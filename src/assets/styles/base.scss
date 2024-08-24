@@ -1,0 +1,604 @@
+/* Import variables */
+@import "./_variables.scss";
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ✅ GLOBAL STYLES ✅ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-family: $font-family-tertiary;
+
+  @include responsiveness(phone-portrait) {
+    line-height: $line-height-small;
+
+    &:not(h1, h2, h3, h4, h5, h6, code) {
+      font-size: $font-size-small;
+    }
+  }
+  @include responsiveness(tablet-portrait) {
+    line-height: $line-height-normal;
+
+    &:not(h1, h2, h3, h4, h5, h6, code) {
+      font-size: $font-size-normal;
+    }
+  }
+  @include responsiveness(desktop) {
+    line-height: $line-height-large;
+
+    &:not(h1, h2, h3, h4, h5, h6, code) {
+      font-size: $font-size-large;
+    }
+  }
+}
+
+:root {
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: toRem(320);
+  min-height: 100vh;
+  width: 100%;
+  // height: 500vh;
+  background: map-get($map: $UI-color, $key: "bg-color");
+  color: map-get($map: $UI-color, $key: "text-main");
+  word-wrap: break-word;
+  padding: 0 toRem(16);
+
+  & footer {
+    margin-top: $margin-medium;
+  }
+}
+
+/* Стили для disabled */
+[disabled] {
+  background: map-get($map: $UI-color, $key: "btn-bg-disabled");
+  color: map-get($map: $UI-color, $key: "btn-text-disabled");
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ✅ COMMON STYLES ✅ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+a {
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  color: map-get($map: $UI-color, $key: "links");
+}
+
+p {
+  line-height: $line-height-normal;
+
+  &:last-child {
+    margin-bottom: $margin-medium;
+  }
+}
+
+button {
+  background-color: map-get($map: $UI-color, $key: "btn-bg");
+  border-radius: toRem(8);
+  border: 1px solid transparent;
+  -webkit-box-shadow: inset 0 0 0 1px
+    map-get($map: $UI-color, $key: "btn-outline");
+  box-shadow: inset 0 0 0 1px map-get($map: $UI-color, $key: "btn-outline");
+  color: map-get($map: $UI-color, $key: "btn-text");
+  font-weight: $font-weight-bold;
+  margin: $margin-medium;
+  padding: toRem(6) toRem(16);
+  text-align: center;
+
+  &:focus,
+  &:focus-visible {
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-bold;
+  margin: $margin-medium 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Forms, Input, Textarea */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Формы */
+
+input {
+  vertical-align: top;
+}
+input[type="range"]:focus,
+summary {
+  outline: 0;
+}
+
+input,
+select {
+  display: block;
+  margin: 0;
+  background-color: map-get($map: $UI-color, $key: "input-bg");
+  border-radius: toRem(8);
+}
+
+[type="checkbox"],
+[type="radio"] {
+  display: initial;
+}
+
+input,
+select,
+textarea {
+  color: map-get($map: $UI-color, $key: "text-black");
+  background-color: map-get($map: $UI-color, $key: "input-bg");
+  font-family: inherit;
+  font-size: inherit;
+  padding: toRem(6) toRem(16);
+  border: none;
+  border-radius: 6px;
+  outline: 0;
+}
+
+select {
+  &::-ms-expand {
+    display: none;
+  }
+}
+select[multiple] {
+  height: auto;
+  background-image: none;
+  overflow-y: auto;
+  padding: 0;
+
+  & option {
+    color: map-get($map: $UI-color, $key: "text-black");
+    width: 100%;
+    padding: toRem(6) toRem(16);
+  }
+}
+
+textarea {
+  display: block;
+  margin: auto;
+  height: auto;
+  resize: vertical;
+  min-height: toRem(40);
+  max-height: toRem(200);
+  min-width: 100%;
+  max-width: 100%;
+
+  /* Стили для textarea без атрибута rows */
+  &:not([rows]) {
+    min-height: toRem(40);
+    height: toRem(40);
+  }
+}
+
+input[type="reset"],
+input[type="submit"] {
+  font-weight: $font-weight-medium;
+  color: map-get($map: $UI-color, $key: "btn-submit-text");
+  background-color: map-get($map: $UI-color, $key: "btn-submit-bg");
+  padding: toRem(8) toRem(12);
+}
+
+label {
+  font-weight: $font-weight-bold;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 0;
+  margin-top: $margin-medium;
+}
+
+/* Стили для input[type='color'] */
+input[type="color"] {
+  padding: 0.25rem;
+  width: toRem(50);
+}
+
+/* Стили для input[type='range'] */
+input[type="range"] {
+  padding: 0;
+  margin: $margin-small 0 $margin-large 0;
+  width: 100%;
+  background: transparent;
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+  }
+  &::-webkit-slider-runnable-track {
+    border-radius: toRem(5);
+    height: toRem(10);
+  }
+  &::-moz-range-track {
+    border-radius: toRem(5);
+    height: toRem(10);
+  }
+  &::-ms-track {
+    height: toRem(10);
+    border-radius: toRem(5);
+  }
+  &::-webkit-slider-thumb {
+    margin: toRem(-3) 0;
+    width: toRem(20);
+    height: toRem(20);
+    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
+    border-radius: 50%;
+    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
+    cursor: pointer;
+  }
+  &::-moz-range-thumb {
+    margin: toRem(-3) 0;
+    width: toRem(20);
+    height: toRem(20);
+    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
+    border-radius: 50%;
+    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
+    cursor: pointer;
+  }
+  &::-ms-thumb {
+    margin: toRem(-3) 0;
+    width: toRem(20);
+    height: toRem(20);
+    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
+    border-radius: 50%;
+    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
+    cursor: pointer;
+  }
+  &::-ms-fill-lower {
+    background: map-get($map: $UI-color, $key: "bg-color");
+  }
+  &::-ms-fill-upper {
+    background: map-get($map: $UI-color, $key: "bg-color");
+  }
+
+  &::-ms-fill-lower {
+    background: map-get($map: $UI-color, $key: "bg-color");
+  }
+  &::-ms-fill-upper {
+    background: map-get($map: $UI-color, $key: "bg-color");
+  }
+
+  &:focus::-webkit-slider-thumb {
+    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
+  }
+  &:focus::-moz-range-thumb {
+    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
+  }
+  &:focus::-ms-thumb {
+    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
+  }
+}
+
+/* Стили для input[type='checkbox'] и input[type='radio'] */
+input[type="checkbox"],
+input[type="radio"] {
+  height: 1rem;
+  width: 1rem;
+}
+input[type="radio"] {
+  border-radius: 100%;
+}
+
+button:focus-within,
+input:focus-within,
+select:focus-within,
+textarea:focus-within {
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  -webkit-box-shadow: 0 0 0 2px map-get($map: $UI-color, $key: "input-focus");
+  box-shadow: 0 0 0 2px map-get($map: $UI-color, $key: "input-focus");
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* OTHER ELEMENTS */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Text highlight */
+mark {
+  background-color: map-get($map: $UI-color, $key: "text-highlight-bg");
+  color: map-get($map: $UI-color, $key: "text-highlight");
+  border-radius: toRem(2);
+  padding: 0 toRem(4);
+  font-weight: $font-weight-bold;
+
+  &::-moz-selection {
+    background-color: map-get($map: $UI-color, $key: "text-highlight-mark");
+    color: map-get($map: $UI-color, $key: "text-highlight");
+  }
+
+  &::selection {
+    background-color: map-get($map: $UI-color, $key: "text-highlight-mark");
+    color: map-get($map: $UI-color, $key: "text-highlight");
+  }
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 👀 TRANSITIONS 👀 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+input,
+textarea {
+  -webkit-transition: background-color $transition-duration-normal
+      $transition-easing-4,
+    border-color $transition-duration-normal $transition-easing-4,
+    color $transition-duration-normal $transition-easing-4,
+    -webkit-box-shadow $transition-duration-normal $transition-easing-4,
+    -webkit-transform $transition-duration-normal ease;
+  transition: background-color $transition-duration-normal $transition-easing-4,
+    border-color $transition-duration-normal $transition-easing-4,
+    color $transition-duration-normal $transition-easing-4,
+    -webkit-box-shadow $transition-duration-normal $transition-easing-4,
+    -webkit-transform $transition-duration-normal ease;
+  -o-transition: background-color $transition-duration-normal
+      $transition-easing-4,
+    border-color $transition-duration-normal $transition-easing-4,
+    color $transition-duration-normal $transition-easing-4,
+    box-shadow $transition-duration-normal $transition-easing-4,
+    transform $transition-duration-normal ease;
+  transition: background-color $transition-duration-normal $transition-easing-4,
+    border-color $transition-duration-normal $transition-easing-4,
+    color $transition-duration-normal $transition-easing-4,
+    box-shadow $transition-duration-normal $transition-easing-4,
+    transform $transition-duration-normal ease;
+  transition: background-color $transition-duration-normal $transition-easing-4,
+    border-color $transition-duration-normal $transition-easing-4,
+    color $transition-duration-normal $transition-easing-4,
+    box-shadow $transition-duration-normal $transition-easing-4,
+    transform $transition-duration-normal ease,
+    -webkit-box-shadow $transition-duration-normal $transition-easing-4,
+    -webkit-transform $transition-duration-normal ease;
+}
+a,
+button,
+th {
+  -webkit-transition: background-color $transition-duration-fast
+      $transition-easing-4,
+    border-color $transition-duration-fast $transition-easing-4,
+    color $transition-duration-fast $transition-easing-4,
+    -webkit-box-shadow $transition-duration-fast $transition-easing-4,
+    -webkit-transform $transition-duration-fast ease;
+  transition: background-color $transition-duration-fast $transition-easing-4,
+    border-color $transition-duration-fast $transition-easing-4,
+    color $transition-duration-fast $transition-easing-4,
+    -webkit-box-shadow $transition-duration-fast $transition-easing-4,
+    -webkit-transform $transition-duration-fast ease;
+  -o-transition: background-color $transition-duration-fast $transition-easing-4,
+    border-color $transition-duration-fast $transition-easing-4,
+    color $transition-duration-fast $transition-easing-4,
+    box-shadow $transition-duration-fast $transition-easing-4,
+    transform $transition-duration-fast ease;
+  transition: background-color $transition-duration-fast $transition-easing-4,
+    border-color $transition-duration-fast $transition-easing-4,
+    color $transition-duration-fast $transition-easing-4,
+    box-shadow $transition-duration-fast $transition-easing-4,
+    transform $transition-duration-fast ease;
+  transition: background-color $transition-duration-fast $transition-easing-4,
+    border-color $transition-duration-fast $transition-easing-4,
+    color $transition-duration-fast $transition-easing-4,
+    box-shadow $transition-duration-fast $transition-easing-4,
+    transform $transition-duration-fast ease,
+    -webkit-box-shadow $transition-duration-fast $transition-easing-4,
+    -webkit-transform $transition-duration-fast ease;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 👀 CUSTOM STYLES 👀 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Контейнер приложения */
+#app {
+  width: 100%;
+}
+
+/* Контент страницы */
+main {
+  padding: 0 toRem(16) 0 toRem(16);
+}
+
+/* Первая буква заголовка */
+.first-letter::first-letter {
+  margin-left: toRem(16);
+}
+
+form {
+  .form-checkbox,
+  .form-radio {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: left;
+    -ms-flex-pack: left;
+    justify-content: left;
+    margin-right: toRem(8);
+
+    label {
+      margin: 0;
+      margin-left: toRem(8);
+      margin-right: 0;
+    }
+  }
+
+  .form-radio {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 👀 BROWSER STUFF 👀 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: $scrollbar-width;
+}
+::-webkit-scrollbar-track {
+  background: map-get($map: $UI-color, $key: "scrollbar-track");
+  border-radius: $scrollbar-border-radius;
+}
+::-webkit-scrollbar-thumb {
+  background: map-get($map: $UI-color, $key: "scrollbar-thumb");
+  border-radius: $scrollbar-border-radius;
+}
+
+/* Выделение текста */
+::-moz-selection {
+  color: map-get($map: $UI-color, $key: "text-black");
+  background: map-get($map: $UI-color, $key: "selection");
+}
+::selection {
+  color: map-get($map: $UI-color, $key: "text-black");
+  background: map-get($map: $UI-color, $key: "selection");
+}
+
+/* Убрать стрелки в input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Убрать выделение при нажатии (для мобильных устройств) */
+/* Стили для курсора */
+a,
+button,
+select,
+summary,
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+input[type="reset"],
+input[type="submit"],
+input[type="color"] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Стили для placeholder */
+::-moz-placeholder {
+  color: map-get($map: $UI-color, $key: "text-black");
+  opacity: 0.5;
+}
+::-webkit-input-placeholder {
+  color: map-get($map: $UI-color, $key: "text-black");
+  opacity: 0.5;
+}
+:-ms-input-placeholder {
+  color: map-get($map: $UI-color, $key: "text-black");
+  opacity: 0.5;
+}
+::-ms-input-placeholder {
+  color: map-get($map: $UI-color, $key: "text-black");
+  opacity: 0.5;
+}
+::placeholder {
+  color: map-get($map: $UI-color, $key: "text-black");
+  opacity: 0.5;
+}
+
+/* Стили для disabled */
+[disabled] {
+  background: map-get($map: $UI-color, $key: "btn-bg-disabled");
+  color: map-get($map: $UI-color, $key: "btn-text-disabled");
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ✨ RESPONSIVENESS ✨ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* 320px */
+@include responsiveness(phone-portrait, "portrait") {
+}
+
+/* 480px */
+@include responsiveness(phone-landscape, "landscape") {
+}
+
+/* 600px */
+@include responsiveness(tablet-portrait, "portrait") {
+}
+
+/* 900px */
+@include responsiveness(tablet-landscape, "landscape") {
+}
+
+/* 1200px */
+@include responsiveness(desktop) {
+}
+
+/* 1800px */
+@include responsiveness(big-desktop) {
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 👀 OTHER MEDIA QUERIES 👀 */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Hover effects */
+@media (hover: hover) {
+  button:not([disabled]):hover {
+    background-color: map-get($map: $UI-color, $key: "btn-bg-hover");
+    color: map-get($map: $UI-color, $key: "btn-text-hover");
+    -webkit-box-shadow: inset 0 0 0 1px
+      map-get($map: $UI-color, $key: "btn-outline-hover");
+    box-shadow: inset 0 0 0 1px
+      map-get($map: $UI-color, $key: "btn-outline-hover");
+  }
+
+  input[type="reset"],
+  input[type="submit"] {
+    &:hover {
+      background-color: map-get($map: $UI-color, $key: "btn-submit-bg-hover");
+      color: map-get($map: $UI-color, $key: "btn-submit-text-hover");
+    }
+  }
+  a:hover {
+    color: map-get($map: $UI-color, $key: "links-hover");
+    -webkit-transition: $transition-duration-slow $transition-easing-3;
+    -o-transition: $transition-duration-slow $transition-easing-3;
+    transition: $transition-duration-slow $transition-easing-3;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    &:hover {
+      background: map-get($map: $UI-color, $key: "scrollbar-thumb-hover");
+    }
+  }
+}
