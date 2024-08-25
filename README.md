@@ -111,7 +111,8 @@ npm install
     "build": "vite build",
     "preview": "vite preview",
     "build:preview": "vite build && vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "build:deploy": "npm run build && npm run deploy"
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
