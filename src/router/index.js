@@ -6,6 +6,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "root",
+      redirect: "/product-list",
+    },
+    {
+      path: "/product-list",
       name: "home",
       component: HomeView,
       meta: {
@@ -14,7 +19,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/about",
+      path: "/product-list/about",
       name: "about",
       component: () => import("../views/AboutView.vue"),
       meta: {

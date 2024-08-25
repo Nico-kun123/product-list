@@ -5,15 +5,23 @@ import { RouterLink } from "vue-router";
 <template>
   <nav>
     <!-- Проверка на текущую страницу -->
-    <RouterLink v-if="$route.path === '/'" class="active" to="/">{{
-      "Главная".toUpperCase()
-    }}</RouterLink>
+    <RouterLink
+      v-if="$route.path === '/product-list'"
+      class="active"
+      to="/product-list"
+      >{{ "Главная".toUpperCase() }}</RouterLink
+    >
     <RouterLink v-else to="/">{{ "Главная".toUpperCase() }}</RouterLink>
 
-    <RouterLink v-if="$route.path === '/about'" class="active" to="/about">{{
-      "О сайте".toUpperCase()
-    }}</RouterLink>
-    <RouterLink v-else to="/about">{{ "О сайте".toUpperCase() }} </RouterLink>
+    <RouterLink
+      v-if="$route.path === '/product-list/about'"
+      class="active"
+      to="/product-list/about"
+      >{{ "О сайте".toUpperCase() }}</RouterLink
+    >
+    <RouterLink v-else to="/product-list/about"
+      >{{ "О сайте".toUpperCase() }}
+    </RouterLink>
   </nav>
   <hr />
 </template>
