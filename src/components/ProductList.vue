@@ -38,20 +38,20 @@ export default defineComponent({
     );
 
     /**
-     * Starts the editing process for a given product.
+     * Начинает процесс редактирования для заданного продукта.
      *
-     * @param {Object} product - The product to be edited.
-     * @return {void} No return value, edits the product internally.
+     * @param {Object} product - Товар для редактирования.
+     * @return {void}
      */
     function startEditing(product) {
-      //   editProduct(product);
+      // TODO: Написать функцию редактирования
       alert("TODO: Написать функцию редактирования");
     }
 
     /**
-     * Navigates to the next page in the product list pagination.
+     * Реализует переключение на следующую страницу в списке продуктов.
      *
-     * @return {void} No return value, updates currentPage ref internally.
+     * @return {void}
      */
     function nextPage() {
       if (currentPage.value < totalPages.value) {
@@ -60,7 +60,7 @@ export default defineComponent({
     }
 
     /**
-     * Decrements the current page value if it is greater than 1.
+     * Реализует переключение на предыдущую страницу в списке продуктов.
      *
      * @return {void}
      */
@@ -71,10 +71,10 @@ export default defineComponent({
     }
 
     /**
-     * Sorts the product list by the specified key.
+     * Сортирует список продуктов по указанному ключу.
      *
-     * @param {string} key - The key to sort by (either "name" or "seller")
-     * @return {void} No return value, updates the sort key and active sort buttons internally.
+     * @param {string} key - Ключ для сортировки ("name" или "seller")
+     * @return {void}
      */
     function sortBy(key) {
       sortKey.value = key;
@@ -89,10 +89,10 @@ export default defineComponent({
     }
 
     /**
-     * Deletes a product by its ID.
+     * Удаляет заданный товар из списка товаров по его ID.
      *
-     * @param {number} id - The ID of the product to delete.
-     * @return {void} This function does not return anything.
+     * @param {number} id - ID товара для удаления
+     * @return {void}
      */
     function deleteProductHandler(id) {
       deleteProduct(id);
@@ -146,7 +146,6 @@ export default defineComponent({
 .product-list {
   display: flex;
   flex-direction: column;
-  //   gap: 10px;
 
   &__filters {
     display: flex;
@@ -215,10 +214,8 @@ export default defineComponent({
   .product-list {
     &__items-wrapper {
       display: flex;
-      //   justify-content: left;
       align-items: center;
       flex-direction: row;
-      //   gap: 10px;
       flex-wrap: wrap;
     }
   }

@@ -51,15 +51,10 @@ body {
   min-width: toRem(320);
   min-height: 100vh;
   width: 100%;
-  // height: 500vh;
   background: map-get($map: $UI-color, $key: "bg-color");
   color: map-get($map: $UI-color, $key: "text-main");
   word-wrap: break-word;
   padding: 0 toRem(16);
-
-  & footer {
-    margin-top: $margin-medium;
-  }
 }
 
 /* Стили для disabled */
@@ -99,10 +94,6 @@ button {
   margin: $margin-medium;
   padding: toRem(6) toRem(16);
   text-align: center;
-
-  &:focus,
-  &:focus-visible {
-  }
 }
 
 h1,
@@ -124,10 +115,6 @@ h6 {
 input {
   vertical-align: top;
 }
-input[type="range"]:focus,
-summary {
-  outline: 0;
-}
 
 input,
 select {
@@ -137,14 +124,8 @@ select {
   border-radius: toRem(8);
 }
 
-[type="checkbox"],
-[type="radio"] {
-  display: initial;
-}
-
 input,
-select,
-textarea {
+select {
   color: map-get($map: $UI-color, $key: "text-black");
   background-color: map-get($map: $UI-color, $key: "input-bg");
   font-family: inherit;
@@ -173,24 +154,6 @@ select[multiple] {
   }
 }
 
-textarea {
-  display: block;
-  margin: auto;
-  height: auto;
-  resize: vertical;
-  min-height: toRem(40);
-  max-height: toRem(200);
-  min-width: 100%;
-  max-width: 100%;
-
-  /* Стили для textarea без атрибута rows */
-  &:not([rows]) {
-    min-height: toRem(40);
-    height: toRem(40);
-  }
-}
-
-input[type="reset"],
 input[type="submit"] {
   font-weight: $font-weight-medium;
   color: map-get($map: $UI-color, $key: "btn-submit-text");
@@ -206,104 +169,9 @@ label {
   margin-top: $margin-medium;
 }
 
-/* Стили для input[type='color'] */
-input[type="color"] {
-  padding: 0.25rem;
-  width: toRem(50);
-}
-
-/* Стили для input[type='range'] */
-input[type="range"] {
-  padding: 0;
-  margin: $margin-small 0 $margin-large 0;
-  width: 100%;
-  background: transparent;
-  vertical-align: middle;
-
-  &:focus {
-    outline: none;
-  }
-  &::-moz-focus-outer {
-    border: 0;
-  }
-  &::-webkit-slider-runnable-track {
-    border-radius: toRem(5);
-    height: toRem(10);
-  }
-  &::-moz-range-track {
-    border-radius: toRem(5);
-    height: toRem(10);
-  }
-  &::-ms-track {
-    height: toRem(10);
-    border-radius: toRem(5);
-  }
-  &::-webkit-slider-thumb {
-    margin: toRem(-3) 0;
-    width: toRem(20);
-    height: toRem(20);
-    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
-    border-radius: 50%;
-    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
-    cursor: pointer;
-  }
-  &::-moz-range-thumb {
-    margin: toRem(-3) 0;
-    width: toRem(20);
-    height: toRem(20);
-    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
-    border-radius: 50%;
-    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
-    cursor: pointer;
-  }
-  &::-ms-thumb {
-    margin: toRem(-3) 0;
-    width: toRem(20);
-    height: toRem(20);
-    border: 2px solid map-get($map: $UI-color, $key: "bg-color");
-    border-radius: 50%;
-    background: map-get($map: $UI-color, $key: "scrollbar-thumb");
-    cursor: pointer;
-  }
-  &::-ms-fill-lower {
-    background: map-get($map: $UI-color, $key: "bg-color");
-  }
-  &::-ms-fill-upper {
-    background: map-get($map: $UI-color, $key: "bg-color");
-  }
-
-  &::-ms-fill-lower {
-    background: map-get($map: $UI-color, $key: "bg-color");
-  }
-  &::-ms-fill-upper {
-    background: map-get($map: $UI-color, $key: "bg-color");
-  }
-
-  &:focus::-webkit-slider-thumb {
-    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
-  }
-  &:focus::-moz-range-thumb {
-    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
-  }
-  &:focus::-ms-thumb {
-    border-color: map-get($map: $UI-color, $key: "scrollbar-thumb-focus");
-  }
-}
-
-/* Стили для input[type='checkbox'] и input[type='radio'] */
-input[type="checkbox"],
-input[type="radio"] {
-  height: 1rem;
-  width: 1rem;
-}
-input[type="radio"] {
-  border-radius: 100%;
-}
-
 button:focus-within,
 input:focus-within,
-select:focus-within,
-textarea:focus-within {
+select:focus-within {
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
@@ -337,8 +205,7 @@ mark {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* 👀 TRANSITIONS 👀 */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-input,
-textarea {
+input {
   -webkit-transition: background-color $transition-duration-normal
       $transition-easing-4,
     border-color $transition-duration-normal $transition-easing-4,
@@ -370,8 +237,7 @@ textarea {
     -webkit-transform $transition-duration-normal ease;
 }
 a,
-button,
-th {
+button {
   -webkit-transition: background-color $transition-duration-fast
       $transition-easing-4,
     border-color $transition-duration-fast $transition-easing-4,
@@ -422,35 +288,10 @@ main {
 }
 
 form {
-  .form-checkbox,
-  .form-radio {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: left;
-    -ms-flex-pack: left;
-    justify-content: left;
-    margin-right: toRem(8);
-
-    label {
-      margin: 0;
-      margin-left: toRem(8);
-      margin-right: 0;
-    }
-  }
-
-  .form-radio {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+  label {
+    margin: 0;
+    margin-left: toRem(8);
+    margin-right: 0;
   }
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -480,31 +321,13 @@ form {
   background: map-get($map: $UI-color, $key: "selection");
 }
 
-/* Убрать стрелки в input number */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"] {
-  -webkit-appearance: textfield;
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
 /* Убрать выделение при нажатии (для мобильных устройств) */
 /* Стили для курсора */
 a,
 button,
 select,
-summary,
 input[type="button"],
-input[type="checkbox"],
-input[type="radio"],
-input[type="range"],
-input[type="reset"],
-input[type="submit"],
-input[type="color"] {
+input[type="submit"] {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -582,7 +405,6 @@ input[type="color"] {
       map-get($map: $UI-color, $key: "btn-outline-hover");
   }
 
-  input[type="reset"],
   input[type="submit"] {
     &:hover {
       background-color: map-get($map: $UI-color, $key: "btn-submit-bg-hover");

@@ -41,8 +41,6 @@ nav {
   margin-right: toRem(20);
   margin-left: toRem(20);
 
-  // border-bottom: 5px solid transparent;
-
   & a {
     color: map-get($UI-color, "navbar-link");
     padding-bottom: toRem(18);
@@ -57,7 +55,6 @@ nav {
   }
 
   & .active {
-    // border-bottom: 5px solid map-get($UI-color, "navbar-link-active");
     font-weight: $font-weight-bold;
     color: map-get($map: $UI-color, $key: "navbar-link-active");
   }

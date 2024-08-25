@@ -23,16 +23,6 @@ const router = createRouter({
       },
     },
     {
-      path: "/product-details/:id",
-      name: "product-details/:id",
-      component: () => import("../views/ProductDetailsView.vue"),
-      props: true,
-      meta: {
-        title: "Product Details",
-        showNavbar: true,
-      },
-    },
-    {
       path: "/:pathMatch(.*)*",
       name: "404",
       component: () => import("../views/NotFoundView.vue"),

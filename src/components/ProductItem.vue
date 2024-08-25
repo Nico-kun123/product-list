@@ -24,9 +24,7 @@ export default defineComponent({
     <p>Интеграция: '{{ product.integration }}'</p>
     <div class="product-item__actions">
       <EditProductIcon @click="$emit('edit', product)" />
-      <!-- <button @click="$emit('edit', product)">Редактировать</button> -->
       <DeleteProductIcon @click="$emit('delete', product)" />
-      <!-- <button @click="$emit('delete', product)">Удалить</button> -->
     </div>
   </div>
 </template>
